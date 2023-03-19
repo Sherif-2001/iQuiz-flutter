@@ -1,16 +1,38 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
-import 'package:game/quiz_brain.dart';
-import 'package:provider/provider.dart';
+import 'package:game/models/player.dart';
+import 'package:game/services/database_helper.dart';
 
-class ScoreBoard extends StatelessWidget {
-  const ScoreBoard({Key? key}) : super(key: key);
+class ScoreBoardPage extends StatefulWidget {
+  const ScoreBoardPage({Key? key}) : super(key: key);
   static String id = "scoreboardId";
+
+  @override
+  State<ScoreBoardPage> createState() => _ScoreBoardPageState();
+}
+
+class _ScoreBoardPageState extends State<ScoreBoardPage> {
+  List<Player>? _players = [];
+
+  void _refreshPlayers() async {
+    final data = await DatabaseHelper.getAllData();
+    setState(() {
+      _players = data;
+    });
+  }
+
+  void _deletePlayer(int id) async {
+    await DatabaseHelper.deletePlayer(id);
+    _refreshPlayers();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _refreshPlayers();
+  }
+
   @override
   Widget build(BuildContext context) {
-    var playersList = Provider.of<Brain>(context).getPlayersList();
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -18,38 +40,51 @@ class ScoreBoard extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.transparent,
-        title: Text('SCOREBOARD',
-            style: TextStyle(color: Colors.white, fontSize: 30)),
+        title: const Text(
+          'SCOREBOARD',
+          style: TextStyle(color: Colors.white, fontSize: 30),
+        ),
       ),
-      body: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/back.png"), fit: BoxFit.cover)),
+      body: Container(
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/back.png"),
+            fit: BoxFit.cover,
           ),
-          ListView.separated(
-            shrinkWrap: true,
-            itemCount: playersList.length,
-            separatorBuilder: (context, index) => Divider(
-              color: Colors.white,
-              thickness: 2,
-              indent: 30,
-              endIndent: 30,
-            ),
-            itemBuilder: (context, index) {
-              return ListTile(
-                onLongPress: () => Provider.of<Brain>(context, listen: false)
-                    .deletePlayer(index),
-                contentPadding: EdgeInsets.symmetric(horizontal: 50),
-                title: Text(playersList[index].playerName,
-                    style: TextStyle(color: Colors.white, fontSize: 30)),
-                trailing: Text(playersList[index].playerScore.toString(),
-                    style: TextStyle(color: Colors.white, fontSize: 30)),
-              );
-            },
-          ),
-        ],
+        ),
+        child: _players != null
+            ? ListView.separated(
+                shrinkWrap: true,
+                itemCount: _players!.length,
+                separatorBuilder: (context, index) => const Divider(
+                  color: Colors.white,
+                  thickness: 2,
+                  indent: 30,
+                  endIndent: 30,
+                ),
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    onLongPress: () =>
+                        _deletePlayer(_players![index].id ?? index),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 50),
+                    title: Text(
+                      _players![index].name,
+                      style: const TextStyle(color: Colors.white, fontSize: 30),
+                    ),
+                    trailing: Text(
+                      _players![index].score.toString(),
+                      style: const TextStyle(color: Colors.white, fontSize: 25),
+                    ),
+                  );
+                },
+              )
+            : const Center(
+                child: Text(
+                  "Scoreboard is Empty",
+                  style: TextStyle(color: Colors.white, fontSize: 30),
+                ),
+              ),
       ),
     );
   }
