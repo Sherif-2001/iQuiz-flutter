@@ -18,7 +18,7 @@ class AudioProvider extends ChangeNotifier {
     if (_bgMusicPlayer.state == PlayerState.stopped) {
       await _bgMusicPlayer.setPlaybackRate(1.25);
       await _bgMusicPlayer.setReleaseMode(ReleaseMode.loop);
-      await _bgMusicPlayer.play(AssetSource("music.mp3"));
+      await _bgMusicPlayer.play(AssetSource("audio/music.mp3"));
     }
     notifyListeners();
   }
@@ -56,14 +56,14 @@ class AudioProvider extends ChangeNotifier {
 
   void playCorrectAnswerAudio() {
     if (_canSFXPlay) {
-      _correctAnswerPlayer.play(AssetSource("correct.mp3"));
+      _correctAnswerPlayer.play(AssetSource("audio/correct.mp3"));
     }
     notifyListeners();
   }
 
   void playWrongAnswerAudio() {
     if (_canSFXPlay) {
-      _wrongAnswerPlayer.play(AssetSource("wrong.mp3"));
+      _wrongAnswerPlayer.play(AssetSource("audio/wrong.mp3"));
     }
     notifyListeners();
   }

@@ -9,6 +9,8 @@ class DrawerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaleFactor = MediaQuery.of(context).textScaleFactor;
+
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(vertical: 30),
@@ -19,7 +21,7 @@ class DrawerButton extends StatelessWidget {
       onPressed: onPress,
       child: Text(
         buttonText,
-        style: const TextStyle(fontSize: 25, color: Colors.white),
+        style: TextStyle(fontSize: 25 / scaleFactor, color: Colors.white),
       ),
     );
   }

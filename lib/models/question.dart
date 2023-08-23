@@ -1,8 +1,18 @@
 class Question {
-  final String text;
+  final String questionText;
   final int answerNum;
-  final List<String> choices;
+  final List choices;
 
   Question(
-      {required this.choices, required this.answerNum, required this.text});
+      {required this.choices,
+      required this.answerNum,
+      required this.questionText});
+
+  factory Question.fromJson(Map<String, dynamic> json) {
+    return Question(
+      questionText: json["question"],
+      answerNum: int.parse(json["answerNum"]),
+      choices: json["answers"],
+    );
+  }
 }

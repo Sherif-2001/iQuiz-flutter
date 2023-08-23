@@ -1,0 +1,504 @@
+{
+    "questions": [
+        {
+            "question": "What is the name of the biggest technology company in South Korea?",
+            "answerNum": "3",
+            "answers": [
+                "Nokia",
+                "Apple",
+                "Microsoft",
+                "Samsung"
+            ]
+        },
+        {
+            "question": "Which animal can be seen on the Porsche logo?",
+            "answerNum": "0",
+            "answers": [
+                "Horse",
+                "Jaguar",
+                "Ox",
+                "Lion"
+            ]
+        },
+        {
+            "question": "What is the rarest M&M color?",
+            "answerNum": "1",
+            "answers": [
+                "Blue",
+                "Brown",
+                "Red",
+                "Yellow"
+            ]
+        },
+        {
+            "question": "Who was the first woman to win a Nobel Prize (in 1903)?",
+            "answerNum": "0",
+            "answers": [
+                "Marie Curie",
+                "Grazia Deledda",
+                "Sigrid Undset",
+                "Jane Addams"
+            ]
+        },
+        {
+            "question": "What is the most consumed manufactured drink in the world?",
+            "answerNum": "2",
+            "answers": [
+                "Water",
+                "Juice",
+                "Tea",
+                "Coffee"
+            ]
+        },
+        {
+            "question": "Which is the only food that never goes bad?",
+            "answerNum": "1",
+            "answers": [
+                "Cheese",
+                "Honey",
+                "Bread",
+                "Sugar"
+            ]
+        },
+        {
+            "question": "Which country invented ice cream?",
+            "answerNum": "0",
+            "answers": [
+                "China",
+                "Niger",
+                "Turkey",
+                "Ukraine"
+            ]
+        },
+        {
+            "question": "Stars and Stripes is the nickname of the flag of which country?",
+            "answerNum": "3",
+            "answers": [
+                "United Kingdom",
+                "Morocco",
+                "Syria",
+                "United States"
+            ]
+        },
+        {
+            "question": "What does WWW stands for?",
+            "answerNum": "1",
+            "answers": [
+                "Wild World Web",
+                "World Wide Web",
+                "Wonder Woman Web",
+                "World Web War"
+            ]
+        },
+        {
+            "question": "Which country consumes the most chocolate?",
+            "answerNum": "3",
+            "answers": [
+                "Brazil",
+                "Algeria",
+                "Poland",
+                "Switzerland"
+            ]
+        },
+        {
+            "question": "What was the first soft drink in outer space?",
+            "answerNum": "0",
+            "answers": [
+                "Coca Cola",
+                "Pepsi",
+                "Schweppes",
+                "Mountain Dew"
+            ]
+        },
+        {
+            "question": "What sport is known as the king of sports?",
+            "answerNum": "2",
+            "answers": [
+                "Baseball",
+                "Basketball",
+                "Soccer",
+                "Ice Hockey"
+            ]
+        },
+        {
+            "question": "What country is responsible for creating the Olympic Games?",
+            "answerNum": "1",
+            "answers": [
+                "Estonia",
+                "Greece",
+                "Finland",
+                "Japan"
+            ]
+        },
+        {
+            "question": "What geometric shape is generally used for stop signs?",
+            "answerNum": "0",
+            "answers": [
+                "Octagon",
+                "Heptagon",
+                "Hexagon",
+                "Square"
+            ]
+        },
+        {
+            "question": "How many languages are written from right to left?",
+            "answerNum": "3",
+            "answers": [
+                "9",
+                "10",
+                "11",
+                "12"
+            ]
+        },
+        {
+            "question": "What color is a ruby?",
+            "answerNum": "1",
+            "answers": [
+                "Green",
+                "Red",
+                "Blue",
+                "White"
+            ]
+        },
+        {
+            "question": "Who was the first president of the United States?",
+            "answerNum": "0",
+            "answers": [
+                "George Washington",
+                "Abraham Lincoln",
+                "John Kennedy",
+                "Richard Nixon"
+            ]
+        },
+        {
+            "question": "What is the smallest country in the world?",
+            "answerNum": "2",
+            "answers": [
+                "Malta",
+                "Singapore",
+                "Vatican City",
+                "Maldives"
+            ]
+        },
+        {
+            "question": "Which country borders 14 nations and crosses 8 time zones?",
+            "answerNum": "3",
+            "answers": [
+                "Canada",
+                "India",
+                "Argentina",
+                "Russia"
+            ]
+        },
+        {
+            "question": "What country has the most natural lakes?",
+            "answerNum": "0",
+            "answers": [
+                "Canada",
+                "Argentina",
+                "Norway",
+                "Sweden"
+            ]
+        },
+        {
+            "question": "How many hearts does an octopus have?",
+            "answerNum": "2",
+            "answers": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "question": "How long do elephant pregnancies last?",
+            "answerNum": "0",
+            "answers": [
+                "22 months",
+                "3 months",
+                "9 months",
+                "15 months"
+            ]
+        },
+        {
+            "question": "The name of which African animal means river horse?",
+            "answerNum": "3",
+            "answers": [
+                "Crocodile",
+                "Sea Horse",
+                "Rays",
+                "Hippopotamus"
+            ]
+        },
+        {
+            "question": "What is the hottest planet in the solar system?",
+            "answerNum": "2",
+            "answers": [
+                "Earth",
+                "Mercury",
+                "Venus",
+                "Jupiter"
+            ]
+        },
+        {
+            "question": "What tissues connect the muscles to the bones?",
+            "answerNum": "1",
+            "answers": [
+                "Blood",
+                "Tendons",
+                "Ligaments",
+                "Cartilage"
+            ]
+        },
+        {
+            "question": "How many stars are there on the American flag?",
+            "answerNum": "2",
+            "answers": [
+                "48",
+                "49",
+                "50",
+                "51"
+            ]
+        },
+        {
+            "question": "What country gave the Statue of Liberty to the United States?",
+            "answerNum": "0",
+            "answers": [
+                "France",
+                "England",
+                "China",
+                "Russia"
+            ]
+        },
+        {
+            "question": "What is the rarest type of blood?",
+            "answerNum": "1",
+            "answers": [
+                "AB +",
+                "AB -",
+                "O +",
+                "O -"
+            ]
+        },
+        {
+            "question": "How many rings make up the olympic logo?",
+            "answerNum": "1",
+            "answers": [
+                "3",
+                "5",
+                "7",
+                "9"
+            ]
+        },
+        {
+            "question": "What is the name of the currency of Japan?",
+            "answerNum": "3",
+            "answers": [
+                "Pound",
+                "Renminbi",
+                "Won",
+                "Yen"
+            ]
+        },
+        {
+            "question": "How many bones are in elephants trunk?",
+            "answerNum": "0",
+            "answers": [
+                "0",
+                "201",
+                "50",
+                "105"
+            ]
+        },
+        {
+            "question": "How many total dots on a dice?",
+            "answerNum": "2",
+            "answers": [
+                "6",
+                "12",
+                "21",
+                "0"
+            ]
+        },
+        {
+            "question": "In which country is Leaning Tower of Pisa?",
+            "answerNum": "0",
+            "answers": [
+                "Italy",
+                "France",
+                "Germany",
+                "England"
+            ]
+        },
+        {
+            "question": "What is the name of Batmans city?",
+            "answerNum": "3",
+            "answers": [
+                "Metropolis",
+                "New York",
+                "Central City",
+                "Gotham City"
+            ]
+        },
+        {
+            "question": "What colors are mixed together to make green?",
+            "answerNum": "1",
+            "answers": [
+                "Blue & Red",
+                "Blue & Yellow",
+                "Red & Yellow",
+                "Red & Orange"
+            ]
+        },
+        {
+            "question": "How many bones in a humans body?",
+            "answerNum": "1",
+            "answers": [
+                "300",
+                "206",
+                "250",
+                "105"
+            ]
+        },
+        {
+            "question": "What is the name of the first Egyptian pyramid built?",
+            "answerNum": "3",
+            "answers": [
+                "Khofo",
+                "Khafre",
+                "Menkaure",
+                "Djoser"
+            ]
+        },
+        {
+            "question": "What country invented paper?",
+            "answerNum": "0",
+            "answers": [
+                "China",
+                "England",
+                "France",
+                "Egypt"
+            ]
+        },
+        {
+            "question": "What is the worlds oldest currency still in use?",
+            "answerNum": "2",
+            "answers": [
+                "French Franc",
+                "American Dollar",
+                "British Pound",
+                "Indian Rupee"
+            ]
+        },
+        {
+            "question": "What is the name of the country shaped like a boot?",
+            "answerNum": "2",
+            "answers": [
+                "Finland",
+                "Qatar",
+                "Itlay",
+                "Indonesia"
+            ]
+        },
+        {
+            "question": "What is the name of the worlds largest desert?",
+            "answerNum": "1",
+            "answers": [
+                "Arctic",
+                "Sahara",
+                "Australia",
+                "Arabian"
+            ]
+        },
+        {
+            "question": "What land animal has the largest eyes?",
+            "answerNum": "0",
+            "answers": [
+                "Ostrich",
+                "Chameleon",
+                "Owl",
+                "Frog"
+            ]
+        },
+        {
+            "question": "What precentage of water is in a watermelon?",
+            "answerNum": "3",
+            "answers": [
+                "48 %",
+                "62 %",
+                "87 %",
+                "92 %"
+            ]
+        },
+        {
+            "question": "What is the offspring of a male zebra and a female donkey called?",
+            "answerNum": "2",
+            "answers": [
+                "Mule",
+                "Zorse",
+                "Zonkey",
+                "Donkra"
+            ]
+        },
+        {
+            "question": "Unicorn is the national animal of which country?",
+            "answerNum": "1",
+            "answers": [
+                "Austria",
+                "Scotland",
+                "South Korea",
+                "Uganda"
+            ]
+        },
+        {
+            "question": "What language is spoken the most around the world?",
+            "answerNum": "2",
+            "answers": [
+                "Arabic",
+                "Chinese",
+                "English",
+                "Hindi"
+            ]
+        },
+        {
+            "question": "In the U.S., what is the most popular flavour of ice cream?",
+            "answerNum": "3",
+            "answers": [
+                "Vanilla",
+                "Strawberry",
+                "Toffee",
+                "Chocolate"
+            ]
+        },
+        {
+            "question": "What is the Mexican food name that translates as little donkey?",
+            "answerNum": "0",
+            "answers": [
+                "Burrito",
+                "Frijoles Charros",
+                "Quesadillas",
+                "Tacos"
+            ]
+        },
+        {
+            "question": "From what country does Gouda cheese come?",
+            "answerNum": "0",
+            "answers": [
+                "Netherlands",
+                "U.S.",
+                "France",
+                "Switzerland"
+            ]
+        },
+        {
+            "question": "What country in the world has the most KFC restaurants?",
+            "answerNum": "1",
+            "answers": [
+                "United States",
+                "China",
+                "Japan",
+                "Russia"
+            ]
+        }
+    ]
+}

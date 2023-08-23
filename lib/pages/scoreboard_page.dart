@@ -11,17 +11,22 @@ class ScoreBoardPage extends StatefulWidget {
 }
 
 class _ScoreBoardPageState extends State<ScoreBoardPage> {
-  List<Player>? _players = [];
+  List<Player> _players = [];
 
   void _refreshPlayers() async {
-    final data = await DatabaseHelper.getAllData();
+    final data = await DatabaseHelper.getScoreboardData();
     setState(() {
-      _players = data;
+      List<Player> playersList = data ?? [];
+      if (playersList.isNotEmpty) {
+        playersList.sort((a, b) => a.score.compareTo(b.score));
+        playersList = playersList.reversed.toList();
+      }
+      _players = playersList;
     });
   }
 
   void _deletePlayer(int id) async {
-    await DatabaseHelper.deletePlayer(id);
+    await DatabaseHelper.deleteScoreboardPlayer(id);
     _refreshPlayers();
   }
 
@@ -33,6 +38,7 @@ class _ScoreBoardPageState extends State<ScoreBoardPage> {
 
   @override
   Widget build(BuildContext context) {
+    final scaleFactor = MediaQuery.of(context).textScaleFactor;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -40,23 +46,23 @@ class _ScoreBoardPageState extends State<ScoreBoardPage> {
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.transparent,
-        title: const Text(
-          'SCOREBOARD',
-          style: TextStyle(color: Colors.white, fontSize: 30),
+        title: Text(
+          'scoreboard'.toUpperCase(),
+          style: TextStyle(color: Colors.white, fontSize: 30 / scaleFactor),
         ),
       ),
       body: Container(
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/back.png"),
+            image: AssetImage("assets/images/back.png"),
             fit: BoxFit.cover,
           ),
         ),
-        child: _players != null
+        child: _players.isNotEmpty
             ? ListView.separated(
                 shrinkWrap: true,
-                itemCount: _players!.length,
+                itemCount: _players.length,
                 separatorBuilder: (context, index) => const Divider(
                   color: Colors.white,
                   thickness: 2,
@@ -66,23 +72,28 @@ class _ScoreBoardPageState extends State<ScoreBoardPage> {
                 itemBuilder: (context, index) {
                   return ListTile(
                     onLongPress: () =>
-                        _deletePlayer(_players![index].id ?? index),
+                        _deletePlayer(_players[index].id ?? index),
                     contentPadding: const EdgeInsets.symmetric(horizontal: 50),
                     title: Text(
-                      _players![index].name,
-                      style: const TextStyle(color: Colors.white, fontSize: 30),
+                      _players[index].name,
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 30 / scaleFactor),
                     ),
                     trailing: Text(
-                      _players![index].score.toString(),
-                      style: const TextStyle(color: Colors.white, fontSize: 25),
+                      _players[index].score.toString(),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 25 / scaleFactor),
                     ),
                   );
                 },
               )
-            : const Center(
+            : Center(
                 child: Text(
                   "Scoreboard is Empty",
-                  style: TextStyle(color: Colors.white, fontSize: 30),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25 / scaleFactor,
+                  ),
                 ),
               ),
       ),

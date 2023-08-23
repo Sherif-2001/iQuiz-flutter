@@ -23,8 +23,10 @@ class LevelsPage extends StatelessWidget {
         children: [
           Center(
             child: Text(
-              'Score: ${prov.getScore()}/${prov.getQuestionsLength()}',
-              style: const TextStyle(fontSize: 30, color: Colors.white),
+              'Score: ${prov.currentScore}/${prov.questionsLength}',
+              style: TextStyle(
+                  fontSize: 30 / MediaQuery.of(context).textScaleFactor,
+                  color: Colors.white),
             ),
           ),
           const SizedBox(height: 10),
@@ -40,7 +42,9 @@ class LevelsPage extends StatelessWidget {
                   borderSide: const BorderSide(color: Colors.white),
                   borderRadius: BorderRadius.circular(20)),
               labelText: 'Name',
-              labelStyle: const TextStyle(color: Colors.white, fontSize: 20),
+              labelStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20 / MediaQuery.of(context).textScaleFactor),
             ),
           ),
           const SizedBox(height: 10),
@@ -50,11 +54,13 @@ class LevelsPage extends StatelessWidget {
                   scoreController.text.length > 2) {
                 FocusScope.of(context).requestFocus(FocusNode());
                 Navigator.of(context).pushReplacementNamed(HomePage.id);
-                DatabaseHelper.insertPlayer(
-                    Player(name: scoreController.text, score: prov.getScore()));
+                DatabaseHelper.addScoreboardPlayer(Player(
+                    name: scoreController.text, score: prov.currentScore));
               }
             },
-            child: const Text('Done', style: TextStyle(fontSize: 20)),
+            child: Text('Done',
+                style: TextStyle(
+                    fontSize: 20 / MediaQuery.of(context).textScaleFactor)),
             style: ElevatedButton.styleFrom(
               shadowColor: Colors.transparent,
               shape: RoundedRectangleBorder(
@@ -68,20 +74,22 @@ class LevelsPage extends StatelessWidget {
       ),
       onWillPopActive: true,
       useRootNavigator: true,
-      style: const AlertStyle(
+      style: AlertStyle(
         titleStyle: TextStyle(
           color: Colors.white,
-          fontSize: 30,
+          fontSize: 30 / MediaQuery.of(context).textScaleFactor,
         ),
         isButtonVisible: false,
         backgroundColor: Colors.black54,
         isCloseButton: false,
-        descStyle: TextStyle(color: Colors.white, fontSize: 40),
+        descStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 40 / MediaQuery.of(context).textScaleFactor),
       ),
     ).show();
   }
 
-  void showCorrectAnswerDialog(BuildContext context, bool isCorrect) {
+  void showAnswerDialog(BuildContext context, bool isCorrect) {
     final prov = Provider.of<QuestionsProvider>(context, listen: false);
     Alert(
       context: context,
@@ -90,15 +98,17 @@ class LevelsPage extends StatelessWidget {
       useRootNavigator: true,
       buttons: [
         DialogButton(
-          child: const Text(
+          child: Text(
             "Next Question",
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 20 / MediaQuery.of(context).textScaleFactor),
           ),
           border: Border.all(color: Colors.white, width: 2),
           color: Colors.transparent,
           onPressed: () {
             Navigator.of(context).pop();
-            prov.isFinished()
+            prov.isGameOver()
                 ? showGameFinishDialog(context)
                 : prov.nextQuestion();
           },
@@ -106,15 +116,17 @@ class LevelsPage extends StatelessWidget {
       ],
       content: Column(
         children: [
-          const Text(
+          Text(
             "Answer",
-            style: TextStyle(color: Colors.white, fontSize: 30),
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 30 / MediaQuery.of(context).textScaleFactor),
           ),
           Text(
-            prov.getQuestion().choices[prov.getQuestion().answerNum],
+            prov.currentQuestion.choices[prov.currentQuestion.answerNum],
             style: TextStyle(
               color: isCorrect ? Colors.green.shade300 : Colors.red.shade300,
-              fontSize: 25,
+              fontSize: 25 / MediaQuery.of(context).textScaleFactor,
             ),
           )
         ],
@@ -132,6 +144,8 @@ class LevelsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaleFactor = MediaQuery.of(context).textScaleFactor;
+
     return WillPopScope(
       onWillPop: () async {
         return false;
@@ -141,13 +155,14 @@ class LevelsPage extends StatelessWidget {
         extendBodyBehindAppBar: true,
         drawer: const CustomDrawer(),
         appBar: AppBar(
-          title:
-              Consumer<QuestionsProvider>(builder: (context, provider, child) {
-            return Text(
-              'Level ${provider.getQuestionNum() + 1}',
-              style: const TextStyle(fontSize: 40),
-            );
-          }),
+          title: Consumer<QuestionsProvider>(
+            builder: (context, provider, child) {
+              return Text(
+                'Level ${provider.currentQuestionNum + 1}',
+                style: TextStyle(fontSize: 35 / scaleFactor),
+              );
+            },
+          ),
           centerTitle: true,
           elevation: 0,
           backgroundColor: Colors.transparent,
@@ -156,60 +171,52 @@ class LevelsPage extends StatelessWidget {
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/back.png"),
+              image: AssetImage("assets/images/back.png"),
               fit: BoxFit.cover,
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(25.0),
+            padding: const EdgeInsets.all(20.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
+                const SizedBox(),
                 Consumer<QuestionsProvider>(
-                    builder: (context, provider, child) {
-                  return Text(
-                    "Score : ${provider.getScore().toString()}",
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 25,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  );
-                }),
-                Consumer<QuestionsProvider>(
-                    builder: (context, provider, child) {
-                  return Text(
-                    provider.getQuestion().text,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontSize: 20,
+                  builder: (context, questionsProvider, child) {
+                    return Text(
+                      questionsProvider.questionText,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20 / scaleFactor,
                         color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  );
-                }),
+                      ),
+                    );
+                  },
+                ),
                 ListView.separated(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: 4,
                   separatorBuilder: (context, index) =>
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 25),
                   itemBuilder: (context, index) {
-                    return Consumer2<QuestionsProvider, AudioProvider>(builder:
-                        (context, questionsProvider, audioProvider, child) {
-                      return ChoiceButton(
-                        buttonText:
-                            questionsProvider.getQuestion().choices[index],
-                        onPress: () {
-                          bool isCorrect =
-                              questionsProvider.isCorrectAnswer(index);
-                          isCorrect
-                              ? audioProvider.playCorrectAnswerAudio()
-                              : audioProvider.playWrongAnswerAudio();
-                          showCorrectAnswerDialog(context, isCorrect);
-                        },
-                      );
-                    });
+                    return Consumer2<QuestionsProvider, AudioProvider>(
+                      builder:
+                          (context, questionsProvider, audioProvider, child) {
+                        return ChoiceButton(
+                          buttonText:
+                              questionsProvider.currentQuestion.choices[index],
+                          onPress: () {
+                            bool isCorrect =
+                                questionsProvider.isCorrectAnswer(index);
+                            isCorrect
+                                ? audioProvider.playCorrectAnswerAudio()
+                                : audioProvider.playWrongAnswerAudio();
+                            showAnswerDialog(context, isCorrect);
+                          },
+                        );
+                      },
+                    );
                   },
                 )
               ],
