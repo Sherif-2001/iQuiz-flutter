@@ -28,29 +28,29 @@ class _HomePageState extends State<HomePage> {
       useRootNavigator: true,
       buttons: [
         DialogButton(
+          border: Border.all(color: Colors.white, width: 2),
+          color: Colors.transparent,
+          onPressed: () => SystemNavigator.pop(),
           child: Text(
             "Yes",
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 20 / MediaQuery.of(context).textScaleFactor),
           ),
-          border: Border.all(color: Colors.white, width: 2),
-          color: Colors.transparent,
-          onPressed: () => SystemNavigator.pop(),
         ),
         DialogButton(
-          child: Text(
-            "No",
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 20 / MediaQuery.of(context).textScaleFactor),
-          ),
           border: Border.all(color: Colors.white, width: 2),
           color: Colors.transparent,
           onPressed: () {
             Navigator.pop(context);
             Provider.of<AudioProvider>(context, listen: false).resumeBGMusic();
           },
+          child: Text(
+            "No",
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 20 / MediaQuery.of(context).textScaleFactor),
+          ),
         )
       ],
       desc: "Exit?",

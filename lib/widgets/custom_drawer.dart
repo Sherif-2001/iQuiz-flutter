@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:game/pages/home_page.dart';
 import 'package:game/providers/audio_provider.dart';
-import 'package:game/widgets/drawer_button.dart';
+import 'package:game/widgets/custom_drawer_button.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -96,16 +96,16 @@ class CustomDrawer extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                DrawerButton(
+                CustomDrawerButton(
                     buttonText: "Resume",
                     onPress: () => Navigator.pop(context)),
                 const SizedBox(height: 30),
-                DrawerButton(
+                CustomDrawerButton(
                   buttonText: "Settings",
                   onPress: () => showSettingsDialog(context),
                 ),
                 const SizedBox(height: 30),
-                DrawerButton(
+                CustomDrawerButton(
                   buttonText: "Home",
                   onPress: () =>
                       Navigator.of(context).pushReplacementNamed(HomePage.id),

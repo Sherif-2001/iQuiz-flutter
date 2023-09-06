@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class DrawerButton extends StatelessWidget {
-  const DrawerButton(
+class CustomDrawerButton extends StatelessWidget {
+  const CustomDrawerButton(
       {Key? key, required this.onPress, required this.buttonText})
       : super(key: key);
   final String buttonText;

@@ -58,9 +58,6 @@ class LevelsPage extends StatelessWidget {
                     name: scoreController.text, score: prov.currentScore));
               }
             },
-            child: Text('Done',
-                style: TextStyle(
-                    fontSize: 20 / MediaQuery.of(context).textScaleFactor)),
             style: ElevatedButton.styleFrom(
               shadowColor: Colors.transparent,
               shape: RoundedRectangleBorder(
@@ -69,6 +66,9 @@ class LevelsPage extends StatelessWidget {
               backgroundColor: Colors.transparent,
               foregroundColor: Colors.white,
             ),
+            child: Text('Done',
+                style: TextStyle(
+                    fontSize: 20 / MediaQuery.of(context).textScaleFactor)),
           ),
         ],
       ),
@@ -98,12 +98,6 @@ class LevelsPage extends StatelessWidget {
       useRootNavigator: true,
       buttons: [
         DialogButton(
-          child: Text(
-            "Next Question",
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 20 / MediaQuery.of(context).textScaleFactor),
-          ),
           border: Border.all(color: Colors.white, width: 2),
           color: Colors.transparent,
           onPressed: () {
@@ -112,6 +106,12 @@ class LevelsPage extends StatelessWidget {
                 ? showGameFinishDialog(context)
                 : prov.nextQuestion();
           },
+          child: Text(
+            "Next Question",
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 20 / MediaQuery.of(context).textScaleFactor),
+          ),
         )
       ],
       content: Column(

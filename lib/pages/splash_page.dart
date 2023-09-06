@@ -22,8 +22,8 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-      splash: Column(
-        children: const [
+      splash: const Column(
+        children: [
           Text("iQUIZ", style: TextStyle(fontSize: 70, color: Colors.white)),
           SizedBox(height: 100),
           Text("Made by Sherif",
