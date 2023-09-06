@@ -1,93 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:iquiz_flutter/models/player.dart';
-import 'package:iquiz_flutter/pages/home_page.dart';
 import 'package:iquiz_flutter/providers/audio_provider.dart';
-import 'package:iquiz_flutter/services/database_helper.dart';
 import 'package:iquiz_flutter/widgets/choice_button.dart';
 import 'package:iquiz_flutter/widgets/custom_drawer.dart';
 import 'package:iquiz_flutter/providers/questions_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-class LevelsPage extends StatelessWidget {
-  const LevelsPage({Key? key}) : super(key: key);
+class GameplayPage extends StatelessWidget {
+  const GameplayPage({Key? key}) : super(key: key);
   static String id = "GameplayId";
-
-  void showGameFinishDialog(BuildContext context) {
-    final prov = Provider.of<QuestionsProvider>(context, listen: false);
-    final scoreController = TextEditingController();
-    Alert(
-      context: context,
-      content: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Center(
-            child: Text(
-              'Score: ${prov.currentScore}/${prov.questionsLength}',
-              style: TextStyle(
-                  fontSize: 30 / MediaQuery.of(context).textScaleFactor,
-                  color: Colors.white),
-            ),
-          ),
-          const SizedBox(height: 10),
-          TextField(
-            style: const TextStyle(color: Colors.white, fontSize: 30),
-            textAlign: TextAlign.center,
-            controller: scoreController,
-            decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.white),
-                  borderRadius: BorderRadius.circular(20)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.white),
-                  borderRadius: BorderRadius.circular(20)),
-              labelText: 'Name',
-              labelStyle: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20 / MediaQuery.of(context).textScaleFactor),
-            ),
-          ),
-          const SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
-              if (scoreController.text != '' &&
-                  scoreController.text.length > 2) {
-                FocusScope.of(context).requestFocus(FocusNode());
-                Navigator.of(context).pushReplacementNamed(HomePage.id);
-                DatabaseHelper.addScoreboardPlayer(Player(
-                    name: scoreController.text, score: prov.currentScore));
-              }
-            },
-            style: ElevatedButton.styleFrom(
-              shadowColor: Colors.transparent,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              side: const BorderSide(color: Colors.white, width: 3),
-              backgroundColor: Colors.transparent,
-              foregroundColor: Colors.white,
-            ),
-            child: Text('Done',
-                style: TextStyle(
-                    fontSize: 20 / MediaQuery.of(context).textScaleFactor)),
-          ),
-        ],
-      ),
-      onWillPopActive: true,
-      useRootNavigator: true,
-      style: AlertStyle(
-        titleStyle: TextStyle(
-          color: Colors.white,
-          fontSize: 30 / MediaQuery.of(context).textScaleFactor,
-        ),
-        isButtonVisible: false,
-        backgroundColor: Colors.black54,
-        isCloseButton: false,
-        descStyle: TextStyle(
-            color: Colors.white,
-            fontSize: 40 / MediaQuery.of(context).textScaleFactor),
-      ),
-    ).show();
-  }
 
   void showAnswerDialog(BuildContext context, bool isCorrect) {
     final prov = Provider.of<QuestionsProvider>(context, listen: false);
@@ -102,9 +23,7 @@ class LevelsPage extends StatelessWidget {
           color: Colors.transparent,
           onPressed: () {
             Navigator.of(context).pop();
-            prov.isGameOver()
-                ? showGameFinishDialog(context)
-                : prov.nextQuestion();
+            prov.nextLevel();
           },
           child: Text(
             "Next Question",

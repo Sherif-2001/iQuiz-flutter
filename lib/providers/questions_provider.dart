@@ -2,59 +2,52 @@ import "dart:convert";
 
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
-import "package:iquiz_flutter/models/game_state.dart";
-import "package:iquiz_flutter/models/question.dart";
+import 'package:iquiz_flutter/models/level.dart';
 import "package:iquiz_flutter/services/database_helper.dart";
 
 class QuestionsProvider extends ChangeNotifier {
   int _questionNum = 0;
-  int _score = 0;
 
-  List<Question> _questionsList = [];
+  List _questionsList = [];
 
-  void startGame() {
-    _questionNum = 0;
-    _score = 0;
-    getQuestions();
-    notifyListeners();
-  }
+  List _unlockedLevels = [];
 
-  void loadGame(GameState gameState) {
-    getQuestions();
-    _questionNum = gameState.questionNum;
-    _score = gameState.score;
-    notifyListeners();
-  }
-
-  void nextQuestion() async {
-    _questionNum++;
-    await DatabaseHelper.saveGameState(
-        GameState(score: _score, questionNum: _questionNum));
-    notifyListeners();
-  }
-
-  void getQuestions() async {
+  void fetchQuestions() async {
     String quesitonsString =
         await rootBundle.loadString('assets/questions.json');
     List quesitonsJson = json.decode(quesitonsString)["questions"];
-    _questionsList =
-        quesitonsJson.map((data) => Question.fromJson(data)).toList();
+    _questionsList = quesitonsJson.map((data) => Level.fromJson(data)).toList();
+  }
+
+  void newGame() async {
+    _questionNum = 0;
+    await DatabaseHelper.clearUnlockedLevels();
     notifyListeners();
   }
 
-  bool isGameOver() {
-    return _questionNum == _questionsList.length - 1;
+  void nextLevel() async {
+    _questionNum++;
+    await DatabaseHelper.unlockLevel(_questionNum);
+    notifyListeners();
+  }
+
+  void selectLevel(int index) {
+    _questionNum = index;
+    notifyListeners();
   }
 
   bool isCorrectAnswer(int choiceNum) {
-    bool isCorrect = choiceNum == currentQuestion.answerNum;
-    if (isCorrect) _score++;
-    return isCorrect;
+    return choiceNum == currentQuestion.answerNum;
+  }
+
+  void getUnlockedLevels() async {
+    _unlockedLevels = await DatabaseHelper.getUnlockedLevels();
+    notifyListeners();
   }
 
   // ------------------- Getters ----------------------
 
-  Question get currentQuestion => _questionsList[_questionNum];
+  Level get currentQuestion => _questionsList[_questionNum];
 
   String get questionText => currentQuestion.questionText;
 
@@ -62,5 +55,5 @@ class QuestionsProvider extends ChangeNotifier {
 
   int get currentQuestionNum => _questionNum;
 
-  int get currentScore => _score;
+  List get unlockedLevels => _unlockedLevels;
 }

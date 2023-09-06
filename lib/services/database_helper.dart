@@ -1,23 +1,12 @@
-import 'package:iquiz_flutter/models/game_state.dart';
-import 'package:iquiz_flutter/models/player.dart';
 import 'package:sqflite/sqflite.dart';
 
-const String scoreboardTable = "scoreboard";
-const String gameStateTable = "gamestate";
+const String levelsTable = "level";
 
 class DatabaseHelper {
   static Future _createTables(Database database) async {
     await database.execute('''
-CREATE TABLE $scoreboardTable(
-  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  name TEXT,
-  score INTEGER
-)
-''');
-    await database.execute('''
-CREATE TABLE $gameStateTable(
-  questionNum INTEGER,
-  score INTEGER
+CREATE TABLE $levelsTable(
+  id INTEGER PRIMARY KEY
 )
 ''');
   }
@@ -32,56 +21,28 @@ CREATE TABLE $gameStateTable(
     );
   }
 
-  static void closeDatabase() async {
+  // ------------------------ Levels Unlocked Methods -------------------
+
+  static Future unlockLevel(int levelNum) async {
     final database = await _getDatabase();
-    database.isOpen ? database.close() : null;
+    await database.query(levelsTable,
+        where: "id = ?", whereArgs: [levelNum]).then((data) async {
+      if (data.isEmpty) {
+        database.insert(levelsTable, {"id": levelNum});
+      }
+    });
   }
 
-  // ----------------------- Scoreboard Methods -------------------------
-
-  static Future<List<Player>?> getScoreboardData() async {
+  static Future getUnlockedLevels() async {
     final database = await _getDatabase();
-    final List<Map<String, dynamic>> maps =
-        await database.query(scoreboardTable, orderBy: "id");
-    if (maps.isEmpty) return null;
-    return List.generate(maps.length, (index) => Player.fromJson(maps[index]));
+    final data = await database.query(levelsTable);
+    return data.map((map) => map["id"] as int).toList();
   }
 
-  static Future<int> addScoreboardPlayer(Player scoreboardPlayer) async {
+  static Future clearUnlockedLevels() async {
     final database = await _getDatabase();
-    final id =
-        await database.insert(scoreboardTable, scoreboardPlayer.toJson());
-    return id;
-  }
-
-  static Future deleteScoreboardPlayer(int id) async {
-    final database = await _getDatabase();
-    try {
-      database.delete(scoreboardTable, where: "id=?", whereArgs: [id]);
-    } catch (e) {
-      print("Something went wrong during deleting an item: $e");
-    }
-  }
-
-  // ------------------------ Game State Methods -------------------
-
-  static Future saveGameState(GameState gameState) async {
-    final database = await _getDatabase();
-    final List<Map<String, dynamic>> dataMaps =
-        await database.query(gameStateTable);
-
-    if (dataMaps.isEmpty) {
-      database.insert(gameStateTable, gameState.toJson());
-    } else {
-      database.update(gameStateTable, gameState.toJson());
-    }
-  }
-
-  static Future loadGameState() async {
-    final database = await _getDatabase();
-    final List<Map<String, dynamic>> dataMaps =
-        await database.query(gameStateTable);
-    if (dataMaps.isEmpty) return null;
-    return GameState.fromJson(dataMaps.first);
+    await database.execute('''
+DELETE FROM $levelsTable
+''');
   }
 }

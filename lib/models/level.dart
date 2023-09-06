@@ -1,15 +1,16 @@
-class Question {
+class Level {
   final String questionText;
   final int answerNum;
   final List choices;
 
-  Question(
-      {required this.choices,
-      required this.answerNum,
-      required this.questionText});
+  Level({
+    required this.choices,
+    required this.answerNum,
+    required this.questionText,
+  });
 
-  factory Question.fromJson(Map<String, dynamic> json) {
-    return Question(
+  factory Level.fromJson(Map<String, dynamic> json) {
+    return Level(
       questionText: json["question"],
       answerNum: int.parse(json["answerNum"]),
       choices: json["answers"],

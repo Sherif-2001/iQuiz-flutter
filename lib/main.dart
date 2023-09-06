@@ -1,7 +1,7 @@
-import 'package:iquiz_flutter/pages/levels_page.dart';
-import 'package:iquiz_flutter/pages/scoreboard_page.dart';
+import 'package:iquiz_flutter/pages/gameplay_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:iquiz_flutter/pages/select_level_page.dart';
 import 'package:iquiz_flutter/pages/splash_page.dart';
 import 'package:iquiz_flutter/providers/audio_provider.dart';
 import 'package:provider/provider.dart';
@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
         routes: {
           SplashPage.id: (context) => const SplashPage(),
           HomePage.id: (context) => const HomePage(),
-          LevelsPage.id: (context) => const LevelsPage(),
-          ScoreBoardPage.id: (context) => const ScoreBoardPage()
+          SelectLevelPage.id: (context) => const SelectLevelPage(),
+          GameplayPage.id: (context) => const GameplayPage(),
         },
       ),
     );
