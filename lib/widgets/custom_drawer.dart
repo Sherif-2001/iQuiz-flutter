@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:game/pages/home_page.dart';
-import 'package:game/providers/audio_provider.dart';
-import 'package:game/widgets/custom_drawer_button.dart';
+import 'package:iquiz_flutter/pages/home_page.dart';
+import 'package:iquiz_flutter/providers/audio_provider.dart';
+import 'package:iquiz_flutter/widgets/custom_drawer_button.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 

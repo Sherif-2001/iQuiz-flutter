@@ -1,5 +1,5 @@
-import 'package:game/models/game_state.dart';
-import 'package:game/models/player.dart';
+import 'package:iquiz_flutter/models/game_state.dart';
+import 'package:iquiz_flutter/models/player.dart';
 import 'package:sqflite/sqflite.dart';
 
 const String scoreboardTable = "scoreboard";

@@ -1,7 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:game/pages/home_page.dart';
-import 'package:game/providers/audio_provider.dart';
+import 'package:iquiz_flutter/pages/home_page.dart';
+import 'package:iquiz_flutter/providers/audio_provider.dart';
 import 'package:provider/provider.dart';
 
 class SplashPage extends StatefulWidget {

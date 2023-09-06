@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:game/models/player.dart';
-import 'package:game/pages/home_page.dart';
-import 'package:game/providers/audio_provider.dart';
-import 'package:game/services/database_helper.dart';
-import 'package:game/widgets/choice_button.dart';
-import 'package:game/widgets/custom_drawer.dart';
-import 'package:game/providers/questions_provider.dart';
+import 'package:iquiz_flutter/models/player.dart';
+import 'package:iquiz_flutter/pages/home_page.dart';
+import 'package:iquiz_flutter/providers/audio_provider.dart';
+import 'package:iquiz_flutter/services/database_helper.dart';
+import 'package:iquiz_flutter/widgets/choice_button.dart';
+import 'package:iquiz_flutter/widgets/custom_drawer.dart';
+import 'package:iquiz_flutter/providers/questions_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 

@@ -1,9 +1,9 @@
-import 'package:game/pages/levels_page.dart';
-import 'package:game/pages/scoreboard_page.dart';
+import 'package:iquiz_flutter/pages/levels_page.dart';
+import 'package:iquiz_flutter/pages/scoreboard_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:game/pages/splash_page.dart';
-import 'package:game/providers/audio_provider.dart';
+import 'package:iquiz_flutter/pages/splash_page.dart';
+import 'package:iquiz_flutter/providers/audio_provider.dart';
 import 'package:provider/provider.dart';
 import 'pages/home_page.dart';
 import 'providers/questions_provider.dart';

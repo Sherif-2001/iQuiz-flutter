@@ -2,9 +2,9 @@ import "dart:convert";
 
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
-import "package:game/models/game_state.dart";
-import "package:game/models/question.dart";
-import "package:game/services/database_helper.dart";
+import "package:iquiz_flutter/models/game_state.dart";
+import "package:iquiz_flutter/models/question.dart";
+import "package:iquiz_flutter/services/database_helper.dart";
 
 class QuestionsProvider extends ChangeNotifier {
   int _questionNum = 0;

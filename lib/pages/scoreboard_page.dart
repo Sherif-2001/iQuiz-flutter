@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:game/models/player.dart';
-import 'package:game/services/database_helper.dart';
+import 'package:iquiz_flutter/models/player.dart';
+import 'package:iquiz_flutter/services/database_helper.dart';
 
 class ScoreBoardPage extends StatefulWidget {
   const ScoreBoardPage({Key? key}) : super(key: key);

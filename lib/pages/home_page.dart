@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:game/models/game_state.dart';
-import 'package:game/pages/levels_page.dart';
-import 'package:game/pages/scoreboard_page.dart';
-import 'package:game/providers/audio_provider.dart';
-import 'package:game/providers/questions_provider.dart';
-import 'package:game/services/database_helper.dart';
-import 'package:game/widgets/home_button.dart';
+import 'package:iquiz_flutter/models/game_state.dart';
+import 'package:iquiz_flutter/pages/levels_page.dart';
+import 'package:iquiz_flutter/pages/scoreboard_page.dart';
+import 'package:iquiz_flutter/providers/audio_provider.dart';
+import 'package:iquiz_flutter/providers/questions_provider.dart';
+import 'package:iquiz_flutter/services/database_helper.dart';
+import 'package:iquiz_flutter/widgets/home_button.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
